@@ -1,37 +1,28 @@
 import os  # Importing the os module for interacting with the operating system
 
 class BrainBank:
-    def __init__(self, base_path='brainbank/'):
-        # Initialize the BrainBank class
-        # Create a list of folders in the current directory that are directories
-        self.base_path = base_path
+    def __init__(self, base_path='brainbank/'): # Initialize the BrainBank class
+        self.base_path = base_path # Create a list of folders in the current directory that are directories
         self.folders = [f for f in os.listdir('.') if os.path.isdir(f)]
-        # Path to the instructions text file
-        self.instructions_path = os.path.join(self.base_path, 'instructions.txt')
+        self.instructions_path = os.path.join(self.base_path, 'instructions.txt') # Path to the instructions text file
         self.folders = [f for f in os.listdir(self.base_path) if os.path.isdir(os.path.join(self.base_path, f))]
 
     def run(self):
-        self.show_instructions()
-        # Main method to run the BrainBank functionality
+        self.show_instructions() # Main method to run the BrainBank functionality
         if not self.folders:
-            # Check if there are no folders; prompt user to create one
-            print("No folders found. Please create a folder before using BrainBank.")
-            return  # Exit the run method if no folders are found
-        
-        create_folder = input('Do you want to create a new folder? (y/n)')
-        if create_folder == 'y':
-            folder_name = input('Enter the name of the new folder')
-            self.create_folder(folder_name)
+            print("No folders found. Please create a folder before using BrainBank.") # Check if there are no folders; prompt user to create one
+            create_folder = input('Press y to create a new folder ')
+            if create_folder == 'y':
+                folder_name = input('Please enter the name of this folder ')
+                self.create_folder(folder_name)
 
         self.folders = [f for f in os.listdir(self.base_path) if os.path.isdir(os.path.join(self.base_path, f))]
         
-        # Display available folders to the user
-        print("Folders available under brainbank:")
+        print("Folders available under brainbank:") # Display available folders to the user
         for folder in self.folders:
             print(f"- {folder}")  # Print each folder name
         
-        # Prompt user to enter a folder name or request instructions
-        command = input("Enter a folder name or 'instructions' to see how to use BrainBank: ")
+        command = input("Enter a folder name or 'instructions' to see how to use BrainBank: ") # Prompt user to enter a folder name or request instructions
         
         if command == 'instructions':
             self.show_instructions() # If the user requests instructions, show them
@@ -44,6 +35,7 @@ class BrainBank:
         """Create a new folder in the brainbank directory."""
         folder_path = os.path.join(self.base_path, folder_name)
         try:
+            print(f"Creating folder at: {folder_path}")
             os.makedirs(folder_path, exist_ok=True)
             print(f"Folder '{folder_name}' created successfully.")
         except Exception as e:
