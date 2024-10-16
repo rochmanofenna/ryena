@@ -1,0 +1,6 @@
+Instructions for BrainBank:
+
+1. Ensure you are in the correct folder to store your questions, notes, or ideas.
+2. Type your question, note, or idea directly after selecting a folder.
+3. To see available folders, simply call 'brainbank' after activating.
+
